@@ -2,6 +2,7 @@ namespace Project1.DB{
 
     using Microsoft.Data.SqlClient;
     using System.Linq;
+    //using Microsoft.Extensions.Logging;
     using Project1.Logic;
 
     public class DBInteraction : IDBCommands
@@ -108,12 +109,12 @@ namespace Project1.DB{
         /// <returns>IEnumerable<Order></returns>
 
 
-        public IEnumerable<Order> listOrderDetailsOfCustomer(int customerID)
+        public async Task<IEnumerable<Order>> listOrderDetailsOfCustomerAsync(int customerID)
         {
             List<Order> result = new();
             
             using SqlConnection connection = new(connectionString);
-            connection.Open();
+            await connection.OpenAsync();
 
             using SqlCommand command = new(@"SELECT * FROM Invoice JOIN InvoiceLine ON Invoice.OrderID = InvoiceLine.OrderID AND CustomerId = @customerID;", connection);
 
@@ -121,14 +122,14 @@ namespace Project1.DB{
 
             using SqlDataReader reader = command.ExecuteReader();
 
-            while(reader.Read())
+            while(await reader.ReadAsync())
             {
                 Console.WriteLine($"Customer# {customerID} placed order {reader.GetInt32(0)} on {reader.GetDateTime(3)} ");
                 result.Add(new(reader.GetInt32(2), customerID, reader.GetDateTime(3)));
                 
             }
 
-            connection.Close();
+            await connection.CloseAsync();
             
             return result;
 
