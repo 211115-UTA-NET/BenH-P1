@@ -148,12 +148,12 @@ namespace Project1.DB{
 
         /// <returns>IEnumerable<Order></returns>
 
-        public IEnumerable<Order> listOrderDetailsOfLocation(int locationID)
+        public async Task<IEnumerable<Order>> listOrderDetailsOfLocationAsync(int locationID)
         {
             List<Order> result = new();
 
             using SqlConnection connection = new(connectionString);
-            connection.Open();
+            await connection.OpenAsync();
 
             using SqlCommand command = new(@"SELECT * FROM Invoice JOIN InvoiceLine ON Invoice.OrderID = InvoiceLine.OrderID AND LocationID = @locationID;", connection);
 
@@ -161,14 +161,14 @@ namespace Project1.DB{
 
             using SqlDataReader reader = command.ExecuteReader();
 
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 Console.WriteLine($"Location# {locationID} has order {reader.GetInt32(0)} on {reader.GetDateTime(3)} ");
                 result.Add(new(locationID, reader.GetInt32(1), reader.GetDateTime(3)));
 
             }
 
-            connection.Close();
+            await connection.CloseAsync();
 
             return result;
 
