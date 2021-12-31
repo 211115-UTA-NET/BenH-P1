@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IDBCommands>(sp => new DBInteraction(connectionString));
+builder.Services.AddSingleton<IDBCommands>(sp => new DBInteraction(connectionString, sp.GetRequiredService<ILogger<DBInteraction>>()));
 
 var app = builder.Build();
 

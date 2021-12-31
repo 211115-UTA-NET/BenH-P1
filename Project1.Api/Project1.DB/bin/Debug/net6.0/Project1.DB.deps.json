@@ -9,6 +9,7 @@
       "Project1.DB/1.0.0": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "4.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
           "Project1.Logic": "1.0.0"
         },
         "runtime": {
@@ -119,6 +120,14 @@
             "rid": "win-x86",
             "assetType": "native",
             "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
@@ -483,6 +492,13 @@
       "sha512": "sha512-wtLlRwQX7YoBUYm25xBjJ3UsuLgycme1xXqDn8t3S5kPCWiZrx8uOkyZHLKzH4kkCiQ9m2/J5JeCKNRbZNn3Qg==",
       "path": "microsoft.data.sqlclient.sni.runtime/4.0.0",
       "hashPath": "microsoft.data.sqlclient.sni.runtime.4.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA==",
+      "path": "microsoft.extensions.logging.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
     },
     "Microsoft.Identity.Client/4.22.0": {
       "type": "package",

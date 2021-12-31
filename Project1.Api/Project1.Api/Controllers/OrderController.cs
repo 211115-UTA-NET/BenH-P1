@@ -17,10 +17,11 @@ namespace Project1.Api.Controllers
 
 
         private readonly IDBCommands dBCommands;
-
-        public OrderController(IDBCommands dBCommands)
+        private readonly ILogger<OrderController> logger;
+        public OrderController(IDBCommands dBCommands, ILogger<OrderController> logger)
         {
             this.dBCommands = dBCommands;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -29,14 +30,15 @@ namespace Project1.Api.Controllers
 
             IEnumerable<Order> orders;
 
-            //try
-            // {
-            orders = await dBCommands.listOrderDetailsOfCustomerAsync(customer);
-            //}
-            /*  catch(SqlException ex)
-              {
-                  //return (500);
-              }*/
+            try
+            {
+                orders = await dBCommands.listOrderDetailsOfCustomerAsync(customer);
+            }
+            catch (SqlException ex)
+            {
+                logger.LogError(ex, "SQL error while getting rounds of customer ID {customer}", customer);
+                return StatusCode(500);
+            }
 
             return orders.ToList();
         }

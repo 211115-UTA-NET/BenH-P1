@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "W3vPGI5vtL96l/JV5bgPY5NAhppqSMcG91dxkKa1RbWgSsXBRLEaYJbqmmECOSY5B5nwUmQ6GFSoDzZnmSl3NQ==",
+  "dgSpecHash": "T31C7oPUD8Cuk6IWMPsU/uYBKBNc7CjmBS+SiAsHUKO96eNddUgn4XdvFm2ITcq996Mb7u4TrWlZ6RBWyFPN6Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.Api\\Project1.Api\\Project1.Api.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\bbruc\\.nuget\\packages\\microsoft.data.sqlclient\\4.0.0\\microsoft.data.sqlclient.4.0.0.nupkg.sha512",
     "C:\\Users\\bbruc\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\4.0.0\\microsoft.data.sqlclient.sni.runtime.4.0.0.nupkg.sha512",
     "C:\\Users\\bbruc\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\bbruc\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\bbruc\\.nuget\\packages\\microsoft.identity.client\\4.22.0\\microsoft.identity.client.4.22.0.nupkg.sha512",
     "C:\\Users\\bbruc\\.nuget\\packages\\microsoft.identity.client.extensions.msal\\2.16.5\\microsoft.identity.client.extensions.msal.2.16.5.nupkg.sha512",
     "C:\\Users\\bbruc\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.8.0\\microsoft.identitymodel.jsonwebtokens.6.8.0.nupkg.sha512",

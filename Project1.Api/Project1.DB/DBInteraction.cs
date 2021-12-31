@@ -2,7 +2,7 @@ namespace Project1.DB{
 
     using Microsoft.Data.SqlClient;
     using System.Linq;
-    //using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Logging;
     using Project1.Logic;
 
     public class DBInteraction : IDBCommands
@@ -10,14 +10,18 @@ namespace Project1.DB{
 
 
         private readonly string connectionString;
+        private readonly ILogger<DBInteraction> logger;
+
         /// <summary>
         ///     connection string
         /// </summary>
         /// <param name="connectionString"></param>
+        /// <param name="logger"></param>
         /// <exception cref="ArgumentNullException"></exception>
-        public DBInteraction(string connectionString)
+        public DBInteraction(string connectionString, ILogger<DBInteraction> logger)
         {
             this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+            this.logger = logger;
         }
 
         /// <summary>
