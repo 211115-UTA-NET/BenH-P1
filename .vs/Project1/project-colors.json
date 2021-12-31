@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ebcfd8e5-4a2f-460f-9d94-7baabd78427f": {
+      "ProjectGuid": "ebcfd8e5-4a2f-460f-9d94-7baabd78427f",
+      "DisplayName": "Project1.DB",
+      "ColorIndex": 0
+    },
+    "d5d85585-2ac9-4a76-b4a8-abe2130c0894": {
+      "ProjectGuid": "d5d85585-2ac9-4a76-b4a8-abe2130c0894",
+      "DisplayName": "Project1.App",
+      "ColorIndex": 1
+    },
+    "9c22e82c-b29b-4676-af67-ca11892e7373": {
+      "ProjectGuid": "9c22e82c-b29b-4676-af67-ca11892e7373",
+      "DisplayName": "Project1.Logic",
+      "ColorIndex": 2
+    },
+    "02d56111-ffc6-485d-aad0-5f80e763c3a5": {
+      "ProjectGuid": "02d56111-ffc6-485d-aad0-5f80e763c3a5",
+      "DisplayName": "Project1.Api",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}
