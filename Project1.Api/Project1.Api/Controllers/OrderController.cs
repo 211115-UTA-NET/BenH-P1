@@ -36,7 +36,7 @@ namespace Project1.Api.Controllers
             }
             catch (SqlException ex)
             {
-                logger.LogError(ex, "SQL error while getting rounds of customer ID {customer}", customer);
+                logger.LogError(ex, "SQL error while getting orders of customer ID {customer}", customer);
                 return StatusCode(500);
             }
 

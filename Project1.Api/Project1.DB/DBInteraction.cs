@@ -78,13 +78,13 @@ namespace Project1.DB{
 
         /// <returns>IEnumerable<Customer></returns>
 
-        public IEnumerable<Customer> findCustomer(string firstName, string lastName)
+        public async Task<IEnumerable<Customer>> findCustomerAsync(string firstName, string lastName)
         {
 
             List<Customer> result = new();
 
             using SqlConnection connection = new(connectionString);
-            connection.Open();
+            await connection.OpenAsync();
 
             using SqlCommand command = new(@"SELECT * FROM Customer WHERE firstName = @firstName AND lastName = @lastName", connection);
 
@@ -93,13 +93,13 @@ namespace Project1.DB{
 
             using SqlDataReader reader = command.ExecuteReader();
 
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 result.Add(new(reader.GetString(1), reader.GetString(2)));
                 Console.WriteLine($"Customer {firstName} {lastName} found with ID {reader.GetInt32(0)}");
             }
 
-            connection.Close();
+            await connection.CloseAsync();
 
             return result;
 
