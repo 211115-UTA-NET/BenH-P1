@@ -53,7 +53,7 @@ namespace Project1.Api.Controllers
 
         // PUT api/<OrderController>/5
         [HttpPut]
-        public async Task<StatusCodeResult> PlaceOrderAsync([FromQuery, Required] string customerID, string locationID, DateTime date, string productID, int quantity)
+        public async Task<StatusCodeResult> PlaceOrderAsync([FromQuery, Required] string customerID, string locationID, string date, string productID, string quantity)
         {
             try
             {

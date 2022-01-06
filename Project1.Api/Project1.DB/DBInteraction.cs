@@ -261,7 +261,7 @@ namespace Project1.DB{
         /// </summary>
         /// <param name="date"> date of order to be searched for</param>
         /// <returns>id of order with associated date</returns>
-        public async Task<int> getOrderIDFromDateAsync(DateTime date)
+        public async Task<int> getOrderIDFromDateAsync(string date)
         {
 
             using SqlConnection connection = new(connectionString);
@@ -418,14 +418,14 @@ namespace Project1.DB{
         /// <param name="date"> date the order is processed</param>
         ///<param name="customerID"> ID of customer doing the ordering</param>
         /// <returns>void</returns>
-        public async Task PlaceOrderAsync(string customerID, string locationID, DateTime date, string productID, int quantity)
+        public async Task PlaceOrderAsync(string customerID, string locationID, string date, string productID, string quantity)
         {
          
             
             using SqlConnection connection = new(connectionString);
 
-
-            if (await checkStoreHasEnoughAsync(locationID, productID, quantity))
+           
+            if (await checkStoreHasEnoughAsync(locationID, productID, Convert.ToInt32(quantity)))
             {
              
                 await connection.OpenAsync();
@@ -460,7 +460,7 @@ namespace Project1.DB{
                 command3.ExecuteNonQuery();
                 await connection.CloseAsync();
 
-                await decreaseStockAsync(locationID, productID, quantity);
+                await decreaseStockAsync(locationID, productID, Convert.ToInt32(quantity));
 
             }
         }
