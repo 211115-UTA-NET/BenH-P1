@@ -128,8 +128,7 @@ namespace Project1.DB{
 
             while(await reader.ReadAsync())
             {
-                Console.WriteLine($"Customer# {customerID} placed order {reader.GetInt32(0)} on {reader.GetDateTime(3)} ");
-                result.Add(new(reader.GetInt32(2).ToString(), customerID, reader.GetDateTime(3)));
+                result.Add(new(reader.GetInt32(2).ToString(), customerID, reader.GetDateTime(3), reader.GetInt32(6).ToString(), reader.GetInt32(7).ToString()));
                 
             }
 
@@ -163,8 +162,8 @@ namespace Project1.DB{
 
             while (await reader.ReadAsync())
             {
-                Console.WriteLine($"Location# {locationID} has order {reader.GetInt32(0)} on {reader.GetDateTime(3)} ");
-                result.Add(new(locationID, reader.GetInt32(1), reader.GetDateTime(3)));
+                //Console.WriteLine($"Location# {locationID} has order {reader.GetInt32(0)} on {reader.GetDateTime(3)} ");
+                result.Add(new(reader.GetInt32(2).ToString(), reader.GetInt32(1), reader.GetDateTime(3), reader.GetInt32(6).ToString(), reader.GetInt32(7).ToString()));
 
             }
 

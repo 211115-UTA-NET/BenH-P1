@@ -229,11 +229,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1UI\\Project1UI.csproj",
+      "projectUniqueName": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1UI\\Project1UI.csproj",
       "projectName": "Project1UI",
-      "projectPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1UI\\Project1UI.csproj",
+      "projectPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1UI\\Project1UI.csproj",
       "packagesPath": "C:\\Users\\bbruc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1UI\\obj\\",
+      "outputPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1UI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bbruc\\AppData\\Roaming\\NuGet\\NuGet.Config",

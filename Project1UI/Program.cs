@@ -14,9 +14,54 @@ namespace Project1UI
             Uri server = new Uri("https://localhost:7235");
             OrderService orderService = new OrderService(server);
 
-            
+            Console.WriteLine("------------ORDER MANAGEMENT SYSTEM-----------");
 
-           
+
+
+
+            while (true)
+            {
+
+
+                Console.WriteLine("Enter 1 For Menu Options, otherwise enter your instruction");
+
+                int switchController = Convert.ToInt32(Console.ReadLine());
+
+
+                switch (switchController)
+                {
+                    case 1:
+                        MenuOptions();
+                        break;
+                    case 2:
+                       // AddCustomerConsole(cmd);
+                        break;
+                    case 3:
+                      //  AddLocationConsole(cmd);
+                        break;
+                    case 4:
+                       // PlaceOrderConsole(cmd);
+                        break;
+                    case 5:
+                        await  ListLocationOrderConsole(orderService);
+                        break;
+                    case 6:
+                       // ListCustomerOrderConsole(cmd);
+                        break;
+                    case 7:
+                      //  FindCustomerConsole(cmd);
+                        break;
+                    case 8:
+                      //  cmd.productCatalogue();
+                        break;
+                    case 9:
+                        Environment.Exit(0);
+                        break;
+
+                }
+            }
+
+
         }
         public static void MenuOptions()
         {
@@ -31,7 +76,7 @@ namespace Project1UI
             Console.WriteLine("9: Quit Application");
         }
 
-        public static void AddCustomerConsole(DBInteraction cmd)
+        public static void AddCustomerConsole()
         {
             string? firstName;
             string? lastName;
@@ -44,14 +89,14 @@ namespace Project1UI
             lastName = Console.ReadLine();
 
 
-            cmd.AddNewCustomer(firstName ?? "INVALID ENTRY", lastName ?? "INVALID ENTRY");
+           // cmd.AddNewCustomer(firstName ?? "INVALID ENTRY", lastName ?? "INVALID ENTRY");
 
             Console.WriteLine($"{firstName} {lastName} added to database");
 
 
         }
 
-        public static void AddLocationConsole(DBInteraction cmd)
+        public static void AddLocationConsole()
         {
             string? storeName;
 
@@ -60,14 +105,14 @@ namespace Project1UI
             storeName = Console.ReadLine();
 
 
-            cmd.AddNewLocation(storeName ?? "Invalid entry");
+           // cmd.AddNewLocation(storeName ?? "Invalid entry");
 
             Console.WriteLine($"{storeName} added to database");
 
 
         }
 
-        public static void PlaceOrderConsole(DBInteraction cmd)
+        public static void PlaceOrderConsole()
         {
 
             Console.WriteLine("Enter Customer ID: ");
@@ -81,7 +126,7 @@ namespace Project1UI
 
             DateTime date = DateTime.Now;
 
-            cmd.placeOrder(customerID, locationID, date, productID, quantity);
+           // cmd.placeOrder(customerID, locationID, date, productID, quantity);
 
 
             while (true)
@@ -96,7 +141,7 @@ namespace Project1UI
                     Console.WriteLine("Enter Quantity");
                     quantity = Convert.ToInt32(Console.ReadLine());
 
-                    cmd.addItemsToOrder(cmd.getOrderIDFromDate(date).ToString(), locationID, productID, quantity);
+                    //cmd.addItemsToOrder(cmd.getOrderIDFromDate(date).ToString(), locationID, productID, quantity);
                 }
                 else if (prompt == "N")
                 {
@@ -109,15 +154,17 @@ namespace Project1UI
 
 
             }
-            cmd.getOrderDetails(cmd.getOrderIDFromDate(date));
+           // cmd.getOrderDetails(cmd.getOrderIDFromDate(date));
         }
 
         public async static Task ListLocationOrderConsole(OrderService orderService)
         {
 
             Console.WriteLine("Enter the ID of the Location you would like to view the order history of");
-            string locID = Console.ReadLine();
 
+            string locID = Console.ReadLine() ?? throw new ArgumentNullException();
+            
+          
             List<Order> orders;
 
 
@@ -126,29 +173,29 @@ namespace Project1UI
 
             foreach (Order order in orders)
             {
-                Console.WriteLine($"{order.customerID} placed {order.})
+                Console.WriteLine($"Customer #{order.customerID} placed an order for {order.quantity} units of product #{order.productID} on {order.date}");
             }
 
         }
 
-        public static void ListCustomerOrderConsole(DBInteraction cmd)
+        public static void ListCustomerOrderConsole()
         {
 
             Console.WriteLine("Enter the ID of the Customer you would like to view the order history of");
             int custID = Convert.ToInt32(Console.ReadLine());
 
-            cmd.listOrderDetailsOfCustomer(custID);
+           // cmd.listOrderDetailsOfCustomer(custID);
         }
 
-        public static void ListOrderDetailsConsole(DBInteraction cmd)
+        public static void ListOrderDetailsConsole()
         {
             Console.WriteLine("Enter the OrderID of the order");
             int orderId = Convert.ToInt32(Console.ReadLine());
 
-            cmd.getOrderDetails(orderId);
+           // cmd.getOrderDetails(orderId);
         }
 
-        public static void FindCustomerConsole(DBInteraction cmd)
+        public static void FindCustomerConsole()
         {
             Console.WriteLine("Enter the first name followed by the last name");
 
@@ -157,7 +204,7 @@ namespace Project1UI
 
 
 
-            cmd.findCustomer(firstName, lastName);
+            //cmd.findCustomer(firstName, lastName);
         }
     }
 
