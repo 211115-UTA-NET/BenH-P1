@@ -14,6 +14,7 @@ namespace Project1UI
             Uri server = new Uri("https://localhost:7235");
             OrderService orderService = new OrderService(server);
             CustomerService customerService = new CustomerService(server);
+            LocationService locationService = new LocationService(server);
 
             Console.WriteLine("------------ORDER MANAGEMENT SYSTEM-----------");
 
@@ -38,7 +39,7 @@ namespace Project1UI
                        // AddCustomerConsole(cmd);
                         break;
                     case 3:
-                      //  AddLocationConsole(cmd);
+                        await AddLocationConsole(locationService);
                         break;
                     case 4:
                        // PlaceOrderConsole(cmd);
@@ -97,16 +98,16 @@ namespace Project1UI
 
         }
 
-        public static void AddLocationConsole()
+        public async static Task AddLocationConsole(LocationService locationService)
         {
             string? storeName;
 
             Console.WriteLine("Enter Location Name");
 
-            storeName = Console.ReadLine();
+            storeName = Console.ReadLine() ?? throw new ArgumentNullException();
 
 
-           // cmd.AddNewLocation(storeName ?? "Invalid entry");
+            await locationService.AddNewLocationAsync(storeName);
 
             Console.WriteLine($"{storeName} added to database");
 

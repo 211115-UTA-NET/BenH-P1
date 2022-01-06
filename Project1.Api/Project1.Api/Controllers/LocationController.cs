@@ -54,9 +54,19 @@ namespace Project1.Api.Controllers
         }
 
         // PUT api/<LocationController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<StatusCodeResult> AddNewLocation([FromQuery, Required] string storeName)
         {
+            try
+            {
+                await dBCommands.AddNewLocationAsync(storeName);
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                logger.LogError(ex, "SQL error while creating store {storeName}", storeName);
+                return StatusCode(500);
+            }
         }
 
         // DELETE api/<LocationController>/5

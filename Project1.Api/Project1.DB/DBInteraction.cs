@@ -53,12 +53,12 @@ namespace Project1.DB{
         /// <param name="storeName"> first name of Location to be added</param>
 
         /// <returns>void</returns>
-        public void AddNewLocation(string storeName)
+        public async Task AddNewLocationAsync(string storeName)
         {
 
             using SqlConnection connection = new(connectionString);
 
-            connection.Open();
+            await connection.OpenAsync();
 
             string cmdText = @"INSERT INTO Location (LocationName) VALUES (@storeName);";
             using SqlCommand command = new(cmdText, connection);
@@ -66,7 +66,7 @@ namespace Project1.DB{
             command.Parameters.AddWithValue("@storeName", storeName);
 
             command.ExecuteNonQuery();
-            connection.Close();
+            await connection.CloseAsync();
 
         }
         /// <summary>
