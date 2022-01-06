@@ -52,9 +52,19 @@ namespace Project1.Api.Controllers
         }
 
         // PUT api/<OrderController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<StatusCodeResult> PlaceOrderAsync([FromQuery, Required] string customerID, string locationID, DateTime date, string productID, int quantity)
         {
+            try
+            {
+                await dBCommands.PlaceOrderAsync(customerID, locationID, date, productID, quantity);
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                logger.LogError(ex, "SQL error while creating order for customer #{customerID}", customerID);
+                return StatusCode(500);
+            }
         }
 
         // DELETE api/<OrderController>/5

@@ -43,7 +43,7 @@ namespace Project1UI
                         await AddLocationConsole(locationService);
                         break;
                     case 4:
-                       // PlaceOrderConsole(cmd);
+                        await PlaceOrderConsole(orderService);
                         break;
                     case 5:
                         await  ListLocationOrderConsole(orderService);
@@ -118,7 +118,7 @@ namespace Project1UI
 
         }
 
-        public static void PlaceOrderConsole()
+        public async static Task PlaceOrderConsole(OrderService orderService)
         {
 
             Console.WriteLine("Enter Customer ID: ");
@@ -128,13 +128,13 @@ namespace Project1UI
             Console.WriteLine("Enter Product ID: ");
             string? productID = Console.ReadLine() ?? "1";
             Console.WriteLine("Enter Quantity");
-            int quantity = Convert.ToInt32(Console.ReadLine());
+            string? quantity = Console.ReadLine();
 
-            DateTime date = DateTime.Now;
+            string date = DateTime.Now.ToString();
 
-           // cmd.placeOrder(customerID, locationID, date, productID, quantity);
+            await orderService.PlaceOrderAsync(customerID, locationID, date, productID, quantity);
 
-
+/*
             while (true)
             {
                 Console.WriteLine("Add more items to order? (Y/N)");
@@ -145,7 +145,7 @@ namespace Project1UI
                     Console.WriteLine("Enter Product ID: ");
                     productID = Console.ReadLine() ?? "1";
                     Console.WriteLine("Enter Quantity");
-                    quantity = Convert.ToInt32(Console.ReadLine());
+                    quantity = Console.ReadLine();
 
                     //cmd.addItemsToOrder(cmd.getOrderIDFromDate(date).ToString(), locationID, productID, quantity);
                 }
@@ -159,7 +159,7 @@ namespace Project1UI
                 }
 
 
-            }
+            }*/
            // cmd.getOrderDetails(cmd.getOrderIDFromDate(date));
         }
 

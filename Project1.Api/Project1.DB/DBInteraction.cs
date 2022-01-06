@@ -183,13 +183,13 @@ namespace Project1.DB{
         /// <param name="amount"> amount to decrease store inventory by</param>
 
         /// <returns>void</returns>
-        public void decreaseStock(string locationID, string productID, int amount)
+        public async Task decreaseStockAsync(string locationID, string productID, int amount)
         {
 
             int locationStock = 0; 
 
             using SqlConnection connection = new(connectionString);
-            connection.Open();
+            await connection.OpenAsync();
 
             using SqlCommand command = new(@"SELECT Stock FROM LocationInventory WHERE LocationID = @locationID AND ProductID = @productID; ", connection);
 
@@ -198,15 +198,15 @@ namespace Project1.DB{
 
             using SqlDataReader reader = command.ExecuteReader();
 
-            reader.Read();
+            await reader.ReadAsync();
 
             locationStock = reader.GetInt32(0);
 
-            connection.Close();
+            await connection.CloseAsync();
 
             locationStock = locationStock - amount;
 
-            connection.Open();
+            await connection.OpenAsync();
             
             using SqlCommand command2 = new(@"UPDATE LocationInventory SET Stock = @locationStock WHERE LocationID = @locationID AND ProductID = @productID; ", connection);
 
@@ -215,7 +215,7 @@ namespace Project1.DB{
             command2.Parameters.AddWithValue("@locationStock", (int)locationStock);
             command2.ExecuteNonQuery();
 
-            connection.Close();
+            await connection.CloseAsync();
 
         }
         /// <summary>
@@ -230,14 +230,14 @@ namespace Project1.DB{
 
         /// <returns>void</returns>
 
-        public void addItemsToOrder(string orderID, string locationID, string productID, int quantity)
+        public async Task addItemsToOrder(string orderID, string locationID, string productID, int quantity)
         {
             using SqlConnection connection = new(connectionString);
 
 
-            connection.Open();
+            await connection.OpenAsync();
 
-            if (checkStoreHasEnough(locationID, productID, quantity))
+            if (await checkStoreHasEnoughAsync(locationID, productID, quantity))
             {
                 using SqlCommand command = new(@"INSERT INTO InvoiceLine (OrderID, ProductID, Quantity) 
                                                 VALUES (@orderID, @productID, @quantity); ", connection);
@@ -247,12 +247,12 @@ namespace Project1.DB{
 
                 command.ExecuteNonQuery();
 
-                connection.Close();
+                await connection.CloseAsync();
 
-                decreaseStock(locationID, productID, quantity);
+                await decreaseStockAsync(locationID, productID, quantity);
             }
 
-            connection.Close();
+            await connection.CloseAsync();
         }
 
         /// <summary>
@@ -261,13 +261,13 @@ namespace Project1.DB{
         /// </summary>
         /// <param name="date"> date of order to be searched for</param>
         /// <returns>id of order with associated date</returns>
-        public int getOrderIDFromDate(DateTime date)
+        public async Task<int> getOrderIDFromDateAsync(DateTime date)
         {
 
             using SqlConnection connection = new(connectionString);
 
 
-            connection.Open();
+            await connection.OpenAsync();
 
             string cmdText = @"SELECT OrderID FROM Invoice WHERE OrderDate = @date;";
 
@@ -278,11 +278,11 @@ namespace Project1.DB{
 
             using SqlDataReader reader = command.ExecuteReader();
 
-            reader.Read();
+            await reader.ReadAsync();
 
             int orderID = reader.GetInt32(0);
 
-            connection.Close();
+            await connection.CloseAsync();
 
             return orderID;
         }
@@ -298,13 +298,13 @@ namespace Project1.DB{
 
         /// <returns>true/false, true if there is enough inventory</returns>
 
-        public bool checkStoreHasEnough(string locationID, string productID, int quantity)
+        public async Task<bool> checkStoreHasEnoughAsync(string locationID, string productID, int quantity)
         {
             int locationStock = 0;
 
             using SqlConnection connection = new(connectionString);
 
-            connection.Open();
+            await connection.OpenAsync();
 
             using SqlCommand command4 = new(@"SELECT Stock FROM LocationInventory WHERE LocationID = @locationID 
                                             AND ProductID = @productID; ", connection);
@@ -314,11 +314,11 @@ namespace Project1.DB{
 
             using SqlDataReader reader2 = command4.ExecuteReader();
 
-            reader2.Read();
+            await reader2.ReadAsync();
 
             locationStock = reader2.GetInt32(0);
 
-            connection.Close();
+            await connection.CloseAsync();
 
             if (locationStock < quantity)
             {
@@ -377,13 +377,13 @@ namespace Project1.DB{
         /// <param name="orderID"> ID of order</param>
         /// <returns>a list of order details associated with the order</returns>
 
-        public IEnumerable<string> getOrderDetails(int orderID)
+        public async Task<IEnumerable<string>> GetOrderDetailsAsync(int orderID)
         {
             List<String> result = new();
 
             using SqlConnection connection = new(connectionString);
 
-            connection.Open();
+            await connection.OpenAsync();
 
             string cmdText = @"SELECT * FROM InvoiceLine WHERE OrderID = @orderID";
             using SqlCommand command = new(cmdText, connection);
@@ -394,7 +394,7 @@ namespace Project1.DB{
 
             Console.WriteLine($"------Details of order # {orderID}------");
             
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 Console.WriteLine($"Line ID: {reader.GetInt32(0)} Product ID: {reader.GetInt32(2)} Quantity: {reader.GetInt32(3)} ");
                 result.Add(reader.GetInt32(0).ToString());
@@ -403,7 +403,7 @@ namespace Project1.DB{
 
             }
 
-            connection.Close();
+            await connection.CloseAsync();
 
             return result;
         }
@@ -418,17 +418,17 @@ namespace Project1.DB{
         /// <param name="date"> date the order is processed</param>
         ///<param name="customerID"> ID of customer doing the ordering</param>
         /// <returns>void</returns>
-        public void placeOrder(string customerID, string locationID, DateTime date, string productID, int quantity)
+        public async Task PlaceOrderAsync(string customerID, string locationID, DateTime date, string productID, int quantity)
         {
          
             
             using SqlConnection connection = new(connectionString);
 
 
-            if (checkStoreHasEnough(locationID, productID, quantity))
+            if (await checkStoreHasEnoughAsync(locationID, productID, quantity))
             {
              
-                connection.Open();
+                await connection.OpenAsync();
 
                 string cmdText = @"INSERT INTO Invoice (CustomerId, LocationId, OrderDate) 
                                     VALUES (@customerID, @locationID, @date);";
@@ -439,12 +439,12 @@ namespace Project1.DB{
                 command.Parameters.AddWithValue("@date", date);
 
                 command.ExecuteNonQuery();
-                connection.Close();
+                await connection.CloseAsync();
 
 
-                int orderID = getOrderIDFromDate(date);
+                int orderID = await getOrderIDFromDateAsync(date);
 
-                connection.Open();
+                await connection.OpenAsync();
 
                 cmdText = @"INSERT INTO InvoiceLine (OrderID, ProductID, Quantity)
                              VALUES (@orderID, @productID, @quantity);";
@@ -458,9 +458,9 @@ namespace Project1.DB{
                 command3.Parameters.AddWithValue("@quantity", quantity);
 
                 command3.ExecuteNonQuery();
-                connection.Close();
+                await connection.CloseAsync();
 
-                decreaseStock(locationID, productID, quantity);
+                await decreaseStockAsync(locationID, productID, quantity);
 
             }
         }
