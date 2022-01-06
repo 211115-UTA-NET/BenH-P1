@@ -95,8 +95,8 @@ namespace Project1.DB{
 
             while (await reader.ReadAsync())
             {
-                result.Add(new(reader.GetString(1), reader.GetString(2)));
-                Console.WriteLine($"Customer {firstName} {lastName} found with ID {reader.GetInt32(0)}");
+                result.Add(new(reader.GetInt32(0), reader.GetString(1), reader.GetString(2)));
+                
             }
 
             await connection.CloseAsync();
@@ -113,7 +113,7 @@ namespace Project1.DB{
         /// <returns>IEnumerable<Order></returns>
 
 
-        public async Task<IEnumerable<Order>> listOrderDetailsOfCustomerAsync(int customerID)
+        public async Task<IEnumerable<Order>> listOrderDetailsOfCustomerAsync(string customerID)
         {
             List<Order> result = new();
             
@@ -163,7 +163,7 @@ namespace Project1.DB{
             while (await reader.ReadAsync())
             {
                 //Console.WriteLine($"Location# {locationID} has order {reader.GetInt32(0)} on {reader.GetDateTime(3)} ");
-                result.Add(new(reader.GetInt32(2).ToString(), reader.GetInt32(1), reader.GetDateTime(3), reader.GetInt32(6).ToString(), reader.GetInt32(7).ToString()));
+                result.Add(new(reader.GetInt32(2).ToString(), reader.GetInt32(1).ToString(), reader.GetDateTime(3), reader.GetInt32(6).ToString(), reader.GetInt32(7).ToString()));
 
             }
 

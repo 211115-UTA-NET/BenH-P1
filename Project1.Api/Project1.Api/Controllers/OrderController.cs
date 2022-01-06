@@ -25,7 +25,7 @@ namespace Project1.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> listOrderDetailsOfCustomerAsync([FromQuery, Required] int customer)
+        public async Task<ActionResult<IEnumerable<Order>>> listOrderDetailsOfCustomerAsync([FromQuery, Required] string customer)
         {
 
             List<Order> orders = new();

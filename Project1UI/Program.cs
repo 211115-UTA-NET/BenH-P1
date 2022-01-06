@@ -13,6 +13,7 @@ namespace Project1UI
 
             Uri server = new Uri("https://localhost:7235");
             OrderService orderService = new OrderService(server);
+            CustomerService customerService = new CustomerService(server);
 
             Console.WriteLine("------------ORDER MANAGEMENT SYSTEM-----------");
 
@@ -46,10 +47,10 @@ namespace Project1UI
                         await  ListLocationOrderConsole(orderService);
                         break;
                     case 6:
-                       // ListCustomerOrderConsole(cmd);
+                        await ListCustomerOrderConsole(orderService);
                         break;
                     case 7:
-                      //  FindCustomerConsole(cmd);
+                        await FindCustomerConsole(customerService);
                         break;
                     case 8:
                       //  cmd.productCatalogue();
@@ -178,13 +179,23 @@ namespace Project1UI
 
         }
 
-        public static void ListCustomerOrderConsole()
+        public async static Task ListCustomerOrderConsole(OrderService orderService)
         {
 
             Console.WriteLine("Enter the ID of the Customer you would like to view the order history of");
-            int custID = Convert.ToInt32(Console.ReadLine());
+            string customerID = Console.ReadLine() ?? throw new ArgumentNullException();
 
-           // cmd.listOrderDetailsOfCustomer(custID);
+
+            List<Order> orders;
+
+
+
+            orders = await orderService.ListOrderDetailsOfCustomerAsync(customerID);
+
+            foreach (Order order in orders)
+            {
+                Console.WriteLine($"Customer #{order.customerID} placed an order for {order.quantity} units of product #{order.productID} on {order.date}");
+            }
         }
 
         public static void ListOrderDetailsConsole()
@@ -195,12 +206,21 @@ namespace Project1UI
            // cmd.getOrderDetails(orderId);
         }
 
-        public static void FindCustomerConsole()
+        public async static Task FindCustomerConsole(CustomerService customerService)
         {
             Console.WriteLine("Enter the first name followed by the last name");
 
-            string? firstName = Console.ReadLine() ?? "Null";
-            string? lastName = Console.ReadLine() ?? "Null";
+            string? firstName = Console.ReadLine() ?? throw new ArgumentNullException();
+            string? lastName = Console.ReadLine() ?? throw new ArgumentNullException();
+
+            List<Customer> customers;
+
+            customers = await customerService.FindCustomerAsync(firstName, lastName);
+
+            foreach (Customer customer in customers)
+            {
+                Console.WriteLine($"Customer {firstName} {lastName} found with ID {customer.customerID}");
+            }
 
 
 

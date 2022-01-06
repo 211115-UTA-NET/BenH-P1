@@ -9,7 +9,7 @@ namespace Project1.DB{
 
         void placeOrder(string customerID, string locationID, DateTime date, string productID, int quantity);
         Task<IEnumerable<Customer>> findCustomerAsync(string firstName, string lastName);
-        Task<IEnumerable<Order>> listOrderDetailsOfCustomerAsync(int customerID);
+        Task<IEnumerable<Order>> listOrderDetailsOfCustomerAsync(string customerID);
         Task<IEnumerable<Order>> listOrderDetailsOfLocationAsync(string locationID);
 
 

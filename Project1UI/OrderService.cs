@@ -56,5 +56,41 @@ namespace Project1UI
 
             return orders;
         }
+
+        public async Task<List<Order>> ListOrderDetailsOfCustomerAsync(string customerID)
+        {
+
+            Dictionary<string, string> query = new() { ["customer"] = customerID };
+            string requestUri = QueryHelpers.AddQueryString("/api/Order", query);
+
+            HttpRequestMessage request = new(HttpMethod.Get, requestUri);
+
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+
+            HttpResponseMessage response;
+            try
+            {
+                response = await _httpClient.SendAsync(request);
+            }
+            catch (HttpRequestException ex)
+            {
+                throw;// UnexpectedServerBehaviorException("network error", ex);
+            }
+
+            response.EnsureSuccessStatusCode();
+
+            if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+            {
+
+            }
+
+            var orders = await response.Content.ReadFromJsonAsync<List<Order>>();
+            if (orders == null)
+            {
+
+            }
+
+            return orders;
+        }
     }
 }

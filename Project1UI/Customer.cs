@@ -1,4 +1,4 @@
-namespace Project1.Logic{
+namespace Project1UI{
 
     using System.Data.SqlClient;
  
