@@ -47,9 +47,19 @@ namespace Project1.Api.Controllers
         }
 
         // PUT api/<CustomerController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<StatusCodeResult> AddNewCustomerAsync([FromQuery, Required] string firstName, string lastName)
         {
+            try
+            {
+                await dBCommands.AddNewCustomerAsync(firstName, lastName);
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                logger.LogError(ex, "SQL error while creating customer {firstName} {lastName}", firstName, lastName);
+                return StatusCode(500);
+            }
         }
 
         // DELETE api/<CustomerController>/5

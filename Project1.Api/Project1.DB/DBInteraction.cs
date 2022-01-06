@@ -31,11 +31,11 @@ namespace Project1.DB{
         /// <param name="lastName">last name of customer to be added</param>
        
         /// <returns>void</returns>
-        public void AddNewCustomer(string firstName, string lastName)
+        public async Task AddNewCustomerAsync(string firstName, string lastName)
         {
 
             using SqlConnection connection = new(connectionString);
-            connection.Open();
+            await connection.OpenAsync();
 
             string cmdText = @"INSERT INTO Customer (firstName, lastName) VALUES (@firstName, @lastName);";
             using SqlCommand command = new(cmdText, connection);
@@ -44,7 +44,7 @@ namespace Project1.DB{
             command.Parameters.AddWithValue("@lastName", lastName);
 
             command.ExecuteNonQuery();
-            connection.Close();
+            await connection.CloseAsync();
 
         }
         /// <summary>

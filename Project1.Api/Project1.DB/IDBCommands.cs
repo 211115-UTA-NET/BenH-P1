@@ -4,7 +4,7 @@ namespace Project1.DB{
     
     public interface IDBCommands{
 
-        void AddNewCustomer(string firstName, string lastName);
+        Task AddNewCustomerAsync(string firstName, string lastName);
         Task AddNewLocationAsync(string storeName);
 
         void placeOrder(string customerID, string locationID, DateTime date, string productID, int quantity);

@@ -56,6 +56,30 @@ namespace Project1UI
 
             return customers;
         }
+        public async Task AddNewCustomerAsync(string firstName, string lastName)
+        {
+
+            Dictionary<string, string> query = new() { ["firstName"] = firstName, ["lastName"] = lastName };
+            string requestUri = QueryHelpers.AddQueryString("/api/Customer", query);
+
+            HttpRequestMessage request = new(HttpMethod.Put, requestUri);
+
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+
+            HttpResponseMessage response;
+            try
+            {
+                response = await _httpClient.SendAsync(request);
+            }
+            catch (HttpRequestException ex)
+            {
+                throw;// UnexpectedServerBehaviorException("network error", ex);
+            }
+
+            response.EnsureSuccessStatusCode();
+
+            
+        }
 
     }
 }

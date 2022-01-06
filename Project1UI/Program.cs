@@ -26,6 +26,7 @@ namespace Project1UI
 
 
                 Console.WriteLine("Enter 1 For Menu Options, otherwise enter your instruction");
+                Console.Beep();
 
                 int switchController = Convert.ToInt32(Console.ReadLine());
 
@@ -36,7 +37,7 @@ namespace Project1UI
                         MenuOptions();
                         break;
                     case 2:
-                       // AddCustomerConsole(cmd);
+                        await AddCustomerConsole(customerService);
                         break;
                     case 3:
                         await AddLocationConsole(locationService);
@@ -67,6 +68,7 @@ namespace Project1UI
         }
         public static void MenuOptions()
         {
+            Console.Clear();
             Console.WriteLine("1: Menu Options");
             Console.WriteLine("2: Add customer");
             Console.WriteLine("3: Add Location");
@@ -78,20 +80,21 @@ namespace Project1UI
             Console.WriteLine("9: Quit Application");
         }
 
-        public static void AddCustomerConsole()
+        public async static Task AddCustomerConsole(CustomerService customerService)
         {
+            Console.Clear();
             string? firstName;
             string? lastName;
             Console.WriteLine("Enter customer first name");
 
-            firstName = Console.ReadLine();
+            firstName = Console.ReadLine() ?? throw new ArgumentNullException(); ;
 
             Console.WriteLine("Enter customer last name");
 
-            lastName = Console.ReadLine();
+            lastName = Console.ReadLine() ?? throw new ArgumentNullException(); ;
 
 
-           // cmd.AddNewCustomer(firstName ?? "INVALID ENTRY", lastName ?? "INVALID ENTRY");
+            await customerService.AddNewCustomerAsync(firstName, lastName);
 
             Console.WriteLine($"{firstName} {lastName} added to database");
 
@@ -100,6 +103,7 @@ namespace Project1UI
 
         public async static Task AddLocationConsole(LocationService locationService)
         {
+            Console.Clear();
             string? storeName;
 
             Console.WriteLine("Enter Location Name");
@@ -162,6 +166,7 @@ namespace Project1UI
         public async static Task ListLocationOrderConsole(OrderService orderService)
         {
 
+            Console.Clear();
             Console.WriteLine("Enter the ID of the Location you would like to view the order history of");
 
             string locID = Console.ReadLine() ?? throw new ArgumentNullException();
@@ -183,6 +188,7 @@ namespace Project1UI
         public async static Task ListCustomerOrderConsole(OrderService orderService)
         {
 
+            Console.Clear();
             Console.WriteLine("Enter the ID of the Customer you would like to view the order history of");
             string customerID = Console.ReadLine() ?? throw new ArgumentNullException();
 
@@ -209,6 +215,7 @@ namespace Project1UI
 
         public async static Task FindCustomerConsole(CustomerService customerService)
         {
+            Console.Clear();
             Console.WriteLine("Enter the first name followed by the last name");
 
             string? firstName = Console.ReadLine() ?? throw new ArgumentNullException();
