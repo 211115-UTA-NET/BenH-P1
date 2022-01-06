@@ -28,11 +28,13 @@ namespace Project1.Api.Controllers
         public async Task<ActionResult<IEnumerable<Order>>> listOrderDetailsOfCustomerAsync([FromQuery, Required] int customer)
         {
 
-            IEnumerable<Order> orders;
+            List<Order> orders = new();
 
             try
             {
-                orders = await dBCommands.listOrderDetailsOfCustomerAsync(customer);
+                orders = (List<Order>)await dBCommands.listOrderDetailsOfCustomerAsync(customer);
+                Order order = orders.ElementAt(0);
+                Console.WriteLine(order.storeID);
             }
             catch (SqlException ex)
             {
@@ -40,9 +42,9 @@ namespace Project1.Api.Controllers
                 return StatusCode(500);
             }
 
-            return orders.ToList();
+            return new JsonResult(orders);
         }
-
+       
         // POST api/<OrderController>
         [HttpPost]
         public void Post([FromBody] string value)

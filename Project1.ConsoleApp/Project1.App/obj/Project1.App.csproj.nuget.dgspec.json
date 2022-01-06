@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.App\\Project1.App.csproj": {}
+    "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.App\\Project1.App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.App\\Project1.App.csproj": {
+    "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.App\\Project1.App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.App\\Project1.App.csproj",
+        "projectUniqueName": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.App\\Project1.App.csproj",
         "projectName": "Project1.App",
-        "projectPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.App\\Project1.App.csproj",
+        "projectPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.App\\Project1.App.csproj",
         "packagesPath": "C:\\Users\\bbruc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.App\\obj\\",
+        "outputPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.App\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bbruc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,7 +27,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.DB\\Project1.DB.csproj": {
+                "projectPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.DB\\Project1.DB.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

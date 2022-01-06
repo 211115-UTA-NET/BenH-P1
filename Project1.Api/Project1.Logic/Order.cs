@@ -2,12 +2,12 @@ namespace Project1.Logic{
 
     public class Order{
 
-        protected int storeID;
-        protected int customerID;
-        private DateTime date;
+        public string storeID { get; set; }
+        public int customerID { get; set; }
+        public DateTime date { get; set; }
 
 
-        public Order(int storeID, int customerID, DateTime date)
+        public Order(string storeID, int customerID, DateTime date)
         {
             this.storeID = storeID;
             this.customerID = customerID;

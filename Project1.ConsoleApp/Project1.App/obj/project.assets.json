@@ -2310,6 +2310,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.DB\\Project1.DB.csproj",
       "Microsoft.Data.SqlClient >= 4.0.0"
     ]
   },
@@ -2319,11 +2320,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.App\\Project1.App.csproj",
+      "projectUniqueName": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.App\\Project1.App.csproj",
       "projectName": "Project1.App",
-      "projectPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.App\\Project1.App.csproj",
+      "projectPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.App\\Project1.App.csproj",
       "packagesPath": "C:\\Users\\bbruc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.App\\obj\\",
+      "outputPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.App\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bbruc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2339,7 +2340,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.DB\\Project1.DB.csproj": {
+              "projectPath": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.DB\\Project1.DB.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -2375,5 +2380,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.DB\\Project1.DB.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\bbruc\\Revature\\Ben-H\\Project1\\Project1.ConsoleApp\\Project1.DB\\Project1.DB.csproj",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

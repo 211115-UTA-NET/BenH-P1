@@ -22,14 +22,14 @@ namespace Project1.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> listOrderDetailsOfLocationAsync([FromQuery, Required] int locationID)
+        public async Task<ActionResult<IEnumerable<Order>>> listOrderDetailsOfLocationAsync([FromQuery, Required] string locationID)
         {
 
             IEnumerable<Order> orders;
 
             try
             {
-                orders = await dBCommands.listOrderDetailsOfCustomerAsync(locationID);
+                orders = await dBCommands.listOrderDetailsOfLocationAsync(locationID);
             }
             catch (SqlException ex)
             {
@@ -37,7 +37,7 @@ namespace Project1.Api.Controllers
                 return StatusCode(500);
             }
 
-            return orders.ToList();
+            return new JsonResult(orders);
         }
 
         // GET api/<LocationController>/5

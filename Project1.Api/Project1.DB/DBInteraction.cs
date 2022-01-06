@@ -129,7 +129,7 @@ namespace Project1.DB{
             while(await reader.ReadAsync())
             {
                 Console.WriteLine($"Customer# {customerID} placed order {reader.GetInt32(0)} on {reader.GetDateTime(3)} ");
-                result.Add(new(reader.GetInt32(2), customerID, reader.GetDateTime(3)));
+                result.Add(new(reader.GetInt32(2).ToString(), customerID, reader.GetDateTime(3)));
                 
             }
 
@@ -148,7 +148,7 @@ namespace Project1.DB{
 
         /// <returns>IEnumerable<Order></returns>
 
-        public async Task<IEnumerable<Order>> listOrderDetailsOfLocationAsync(int locationID)
+        public async Task<IEnumerable<Order>> listOrderDetailsOfLocationAsync(string locationID)
         {
             List<Order> result = new();
 
