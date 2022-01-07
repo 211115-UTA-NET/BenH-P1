@@ -4,7 +4,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.WebUtilities;
-
+using Microsoft.Extensions.Logging;
 
 namespace Project1UI
 {
@@ -12,12 +12,13 @@ namespace Project1UI
     
 
         private readonly HttpClient _httpClient = new();
-        
-        
-        public OrderService(Uri serverUri)
+        private readonly ILogger<OrderService> logger;
+
+        public OrderService(Uri serverUri, ILogger<OrderService> logger)
         {
             
             _httpClient.BaseAddress = serverUri;
+            this.logger = logger;
         }
 
       
@@ -35,13 +36,15 @@ namespace Project1UI
             try
             {
                 response = await _httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
             }
             catch (HttpRequestException ex)
             {
-                throw;// UnexpectedServerBehaviorException("network error", ex);
+                Console.WriteLine("Http Request Error [HttpGet] /api/Location");
+                logger.LogError(ex, "Http Request Error [HttpGet] /api/Location");
+                throw;
             }
-
-            response.EnsureSuccessStatusCode(); 
+         
           
             if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
             {
@@ -51,7 +54,9 @@ namespace Project1UI
             var orders = await response.Content.ReadFromJsonAsync<List<Order>>();
             if (orders == null)
             {
-              
+                Console.WriteLine($"No orders for Location #{locationID}", locationID);
+                orders = new List<Order>();
+
             }
 
             return orders;
@@ -71,23 +76,28 @@ namespace Project1UI
             try
             {
                 response = await _httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode(); 
+      
             }
             catch (HttpRequestException ex)
             {
-                throw;// UnexpectedServerBehaviorException("network error", ex);
+                Console.WriteLine("Http Request Error [HttpGet] /api/Order");
+                logger.LogError(ex, "Http Request Error [HttpGet] /api/Location");
+                throw;
             }
 
-            response.EnsureSuccessStatusCode();
 
             if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
             {
 
             }
-
+           
             var orders = await response.Content.ReadFromJsonAsync<List<Order>>();
+           
             if (orders == null)
             {
-
+                Console.WriteLine($"No orders for customer $ {customerID}", customerID);
+                orders = new List<Order>();
             }
 
             return orders;
@@ -110,7 +120,9 @@ namespace Project1UI
             }
             catch (HttpRequestException ex)
             {
-                throw;// UnexpectedServerBehaviorException("network error", ex);
+                Console.WriteLine("Http Request Error: [HttpPut] /api/Order");
+                logger.LogError(ex, "Http Request Error [HttpGet] /api/Order");
+                throw;
             }
 
             response.EnsureSuccessStatusCode();
