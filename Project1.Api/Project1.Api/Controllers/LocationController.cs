@@ -40,18 +40,7 @@ namespace Project1.Api.Controllers
             return new JsonResult(orders);
         }
 
-        // GET api/<LocationController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<LocationController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+      
 
         // PUT api/<LocationController>/5
         [HttpPut]
@@ -69,10 +58,6 @@ namespace Project1.Api.Controllers
             }
         }
 
-        // DELETE api/<LocationController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+       
     }
 }

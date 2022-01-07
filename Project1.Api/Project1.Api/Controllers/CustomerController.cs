@@ -40,11 +40,7 @@ namespace Project1.Api.Controllers
         }
 
 
-        // POST api/<CustomerController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        
 
         // PUT api/<CustomerController>/5
         [HttpPut]
@@ -62,10 +58,6 @@ namespace Project1.Api.Controllers
             }
         }
 
-        // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }

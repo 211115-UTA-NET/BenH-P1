@@ -162,7 +162,7 @@ namespace Project1.DB{
 
             while (await reader.ReadAsync())
             {
-                //Console.WriteLine($"Location# {locationID} has order {reader.GetInt32(0)} on {reader.GetDateTime(3)} ");
+                
                 result.Add(new(reader.GetInt32(2).ToString(), reader.GetInt32(1).ToString(), reader.GetDateTime(3), reader.GetInt32(6).ToString(), reader.GetInt32(7).ToString()));
 
             }
@@ -212,7 +212,7 @@ namespace Project1.DB{
 
             command2.Parameters.AddWithValue("@locationID", locationID);
             command2.Parameters.AddWithValue("@productID", productID);
-            command2.Parameters.AddWithValue("@locationStock", (int)locationStock);
+            command2.Parameters.AddWithValue("@locationStock", locationStock);
             command2.ExecuteNonQuery();
 
             await connection.CloseAsync();
