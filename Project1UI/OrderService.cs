@@ -120,12 +120,8 @@ namespace Project1UI
 
             }
 
-            var orders = await response.Content.ReadFromJsonAsync<List<Order>>();
-            if (orders == null)
-            {
-
-            }
-
+           
+           
             
         }
     }

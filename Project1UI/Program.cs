@@ -128,7 +128,7 @@ namespace Project1UI
             Console.WriteLine("Enter Product ID: ");
             string? productID = Console.ReadLine() ?? "1";
             Console.WriteLine("Enter Quantity");
-            string? quantity = Console.ReadLine();
+            string? quantity = Console.ReadLine() ?? throw new ArgumentNullException();
 
             string date = DateTime.Now.ToString();
 

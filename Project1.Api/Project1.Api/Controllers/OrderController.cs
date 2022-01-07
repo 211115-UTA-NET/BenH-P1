@@ -13,7 +13,7 @@ namespace Project1.Api.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        
+
 
 
         private readonly IDBCommands dBCommands;
@@ -44,14 +44,8 @@ namespace Project1.Api.Controllers
 
             return new JsonResult(orders);
         }
-       
-        // POST api/<OrderController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
 
-        // PUT api/<OrderController>/5
+        // POST api/<OrderController>
         [HttpPut]
         public async Task<StatusCodeResult> PlaceOrderAsync([FromQuery, Required] string customerID, string locationID, string date, string productID, string quantity)
         {
@@ -67,7 +61,10 @@ namespace Project1.Api.Controllers
             }
         }
 
-      
+        // PUT api/<OrderController>/5
+        
+
+
     }
 }
 

@@ -425,8 +425,8 @@ namespace Project1.DB{
             using SqlConnection connection = new(connectionString);
 
            
-            if (await checkStoreHasEnoughAsync(locationID, productID, Convert.ToInt32(quantity)))
-            {
+              if (await checkStoreHasEnoughAsync(locationID, productID, Convert.ToInt32(quantity)))
+              {
              
                 await connection.OpenAsync();
 
@@ -462,7 +462,7 @@ namespace Project1.DB{
 
                 await decreaseStockAsync(locationID, productID, Convert.ToInt32(quantity));
 
-            }
+              }
         }
     }
 }

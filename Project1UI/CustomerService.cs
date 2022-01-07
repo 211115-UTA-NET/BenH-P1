@@ -38,7 +38,7 @@ namespace Project1UI
             }
             catch (HttpRequestException ex)
             {
-                throw;// UnexpectedServerBehaviorException("network error", ex);
+                throw ex.GetBaseException();
             }
 
             response.EnsureSuccessStatusCode();
