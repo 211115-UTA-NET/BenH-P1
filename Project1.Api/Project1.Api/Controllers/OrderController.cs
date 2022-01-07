@@ -67,11 +67,7 @@ namespace Project1.Api.Controllers
             }
         }
 
-        // DELETE api/<OrderController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+      
     }
 }
 
