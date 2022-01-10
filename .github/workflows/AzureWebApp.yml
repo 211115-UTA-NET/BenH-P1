@@ -15,9 +15,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2   # checkout the repo main
+      - uses: actions/checkout@v2   
 
-      - name: Set up .NET Core SDK        # setup .Net Core SDK
+      - name: Set up .NET Core SDK        
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
@@ -41,12 +41,7 @@ jobs:
         run: |
           cd Project1.Api
           dotnet publish --no-build -c Release -o '${{env.DOTNET_ROOT}}/myapp'
-#       - name: Upload artifact for deployment job
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: .net-app
-#           path: ${{env.DOTNET_ROOT}}/myapp
-          
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
