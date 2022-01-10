@@ -36,3 +36,4 @@ C:\Users\bbruc\Revature\Ben-H\Project1\Project1UI\bin\Debug\net6.0\Microsoft.Ext
 C:\Users\bbruc\Revature\Ben-H\Project1\Project1UI\bin\Debug\net6.0\Microsoft.Net.Http.Headers.dll
 C:\Users\bbruc\Revature\Ben-H\Project1\Project1UI\obj\Debug\net6.0\Project1UI.csproj.CopyComplete
 C:\Users\bbruc\Revature\Ben-H\Project1\Project1UI\obj\Debug\net6.0\Project1UI.genruntimeconfig.cache
+C:\Users\bbruc\Revature\Ben-H\Project1\Project1UI\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll

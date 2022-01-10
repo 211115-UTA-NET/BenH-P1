@@ -12,13 +12,13 @@ namespace Project1UI
     
 
         private readonly HttpClient _httpClient = new();
-        private readonly ILogger<OrderService> logger;
+        
 
-        public OrderService(Uri serverUri, ILogger<OrderService> logger)
+        public OrderService(Uri serverUri)
         {
             
             _httpClient.BaseAddress = serverUri;
-            this.logger = logger;
+            
         }
 
       
@@ -41,7 +41,7 @@ namespace Project1UI
             catch (HttpRequestException ex)
             {
                 Console.WriteLine("Http Request Error [HttpGet] /api/Location");
-                logger.LogError(ex, "Http Request Error [HttpGet] /api/Location");
+                //logger.LogError(ex, "Http Request Error [HttpGet] /api/Location");
                 throw;
             }
          
@@ -82,7 +82,7 @@ namespace Project1UI
             catch (HttpRequestException ex)
             {
                 Console.WriteLine("Http Request Error [HttpGet] /api/Order");
-                logger.LogError(ex, "Http Request Error [HttpGet] /api/Location");
+               // logger.LogError(ex, "Http Request Error [HttpGet] /api/Location");
                 throw;
             }
 
@@ -121,7 +121,7 @@ namespace Project1UI
             catch (HttpRequestException ex)
             {
                 Console.WriteLine("Http Request Error: [HttpPut] /api/Order");
-                logger.LogError(ex, "Http Request Error [HttpGet] /api/Order");
+                //logger.LogError(ex, "Http Request Error [HttpGet] /api/Order");
                 throw;
             }
 

@@ -1,12 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Net.Http.Json;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 
 namespace Project1UI
 {
     public class Program
     {
         public static readonly HttpClient HttpClient = new();
+        public static readonly ILogger<OrderService> logger;
 
         public async static Task Main(string[] args)
         {
