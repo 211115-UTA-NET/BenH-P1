@@ -31,15 +31,15 @@ jobs:
             ${{ runner.os }}-nuget-
       - name: Restore
         run: |
-          cd StoreApp.Api
+          cd Project1.Api
           dotnet restore
       - name: Build with dotnet
         run: |
-          cd StoreApp.Api
+          cd Project1.Api
           dotnet build --no-restore -c Release
       - name: dotnet publish
         run: |
-          cd StoreApp.Api
+          cd Project1.Api
           dotnet publish --no-build -c Release -o '${{env.DOTNET_ROOT}}/myapp'
 #       - name: Upload artifact for deployment job
 #         uses: actions/upload-artifact@v2
