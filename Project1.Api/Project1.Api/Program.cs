@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Project1.DB;
 
-string connectionString = await File.ReadAllTextAsync("C:/Users/bbruc/Revature/Ben-H/ben-db-connection-string.txt");
+//string connectionString = await File.ReadAllTextAsync("C:/Users/bbruc/Revature/Ben-H/ben-db-connection-string.txt");
 
 var builder = WebApplication.CreateBuilder(args);
 
+string connectionString = builder.Configuration.GetConnectionString("PROJECT1-DB-Connection");
 // Add services to the container.
 
 builder.Services.AddControllers();

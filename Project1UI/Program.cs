@@ -13,7 +13,7 @@ namespace Project1UI
         public async static Task Main(string[] args)
         {
 
-            Uri server = new Uri("https://localhost:7235");
+            Uri server = new Uri("https://benhp1.azurewebsites.net/");
             OrderService orderService = new OrderService(server);
             CustomerService customerService = new CustomerService(server);
             LocationService locationService = new LocationService(server);
@@ -57,7 +57,7 @@ namespace Project1UI
                         await FindCustomerConsole(customerService);
                         break;
                     case 8:
-                      //  cmd.productCatalogue();
+                        ProductCatalogue();
                         break;
                     case 9:
                         Environment.Exit(0);
@@ -102,8 +102,20 @@ namespace Project1UI
 
 
         }
+        public async static Task ProductCatalogue()
+        {
+            Console.WriteLine("-----Products-----");
+            Console.WriteLine("1. Tacos");
+            Console.WriteLine("2. Burritos");
+            Console.WriteLine("3. Nachos");
+            Console.WriteLine("4. Salsa");
+            Console.WriteLine("5. Pico");
+            Console.WriteLine("6. Guac");
+        
+        }
 
-        public async static Task AddLocationConsole(LocationService locationService)
+
+            public async static Task AddLocationConsole(LocationService locationService)
         {
             Console.Clear();
             string? storeName;
@@ -122,7 +134,8 @@ namespace Project1UI
 
         public async static Task PlaceOrderConsole(OrderService orderService)
         {
-
+            Console.Clear();
+            ProductCatalogue();
             Console.WriteLine("Enter Customer ID: ");
             string? customerID = Console.ReadLine() ?? "1";
             Console.WriteLine("Enter location ID: ");
